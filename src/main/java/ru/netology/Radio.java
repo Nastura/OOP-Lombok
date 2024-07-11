@@ -1,9 +1,15 @@
 package ru.netology;
-
 /* current radio station number - номер текущей радиостанции
    sound volume - громкость звука.
-   get the current radio station number;
- */
+   get the current radio station number; */
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radio {
     private int sizeRadioStation = 10;
     // размер радиостанций
@@ -18,10 +24,6 @@ public class Radio {
         }
         this.sizeRadioStation = minRadioStation + sizeRadioStation;
         this.maxRadioStation = this.sizeRadioStation - 1;
-    }
-
-    public Radio() {
-
     }
 
     public void setCurrentRadioStationNumber(int newcurrentRadioStationNumber) {
@@ -66,29 +68,10 @@ public class Radio {
         setSoundVolume(target);
     }
 
-
     public void prevVolume() {
         int target = soundVolume - 1;
         setSoundVolume(target);
     }
-
-    public int getCurrentRadioStationNumber() {
-        return currentRadioStationNumber;
-    }
-
-    public int getSoundVolume() {
-        return soundVolume;
-    }
-
-    public int getSizeRadioStation() {
-        return sizeRadioStation;
-    }
-
-    public int getMaxRadioStation() {
-        return maxRadioStation;
-    }
-
-    public int getMinRadioStation() {
-        return minRadioStation;
-    }
 }
+
+
