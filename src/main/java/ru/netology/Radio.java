@@ -5,11 +5,27 @@ package ru.netology;
    get the current radio station number;
  */
 public class Radio {
-    private int currentRadioStationNumber;
+    private int sizeRadioStation = 10;
+    // размер радиостанций
+    private int maxRadioStation = 9;
+    private int minRadioStation = 0;
+    private int currentRadioStationNumber = minRadioStation;
     private int soundVolume;
 
+    public Radio(int sizeRadioStation) {
+        if (sizeRadioStation < 0) {
+            sizeRadioStation = this.sizeRadioStation;
+        }
+        this.sizeRadioStation = minRadioStation + sizeRadioStation;
+        this.maxRadioStation = this.sizeRadioStation - 1;
+    }
+
+    public Radio() {
+
+    }
+
     public void setCurrentRadioStationNumber(int newcurrentRadioStationNumber) {
-        if ((newcurrentRadioStationNumber > 9) | (newcurrentRadioStationNumber < 0)) {
+        if ((newcurrentRadioStationNumber > this.maxRadioStation) | (newcurrentRadioStationNumber < this.minRadioStation)) {
             currentRadioStationNumber = 0;
             return;
         }
@@ -31,16 +47,16 @@ public class Radio {
 
     public void nextRadiostation() {
         int target = currentRadioStationNumber + 1;
-        if (target >= 10) {
-            target = 0;
+        if (target > maxRadioStation) {
+            target = minRadioStation;
         }
         setCurrentRadioStationNumber(target);
     }
 
     public void prevRadiostation() {
         int target = currentRadioStationNumber - 1;
-        if (target < 0) {
-            target = 9;
+        if (target < minRadioStation) {
+            target = maxRadioStation;
         }
         setCurrentRadioStationNumber(target);
     }
@@ -64,4 +80,15 @@ public class Radio {
         return soundVolume;
     }
 
+    public int getSizeRadioStation() {
+        return sizeRadioStation;
+    }
+
+    public int getMaxRadioStation() {
+        return maxRadioStation;
+    }
+
+    public int getMinRadioStation() {
+        return minRadioStation;
+    }
 }
