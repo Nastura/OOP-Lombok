@@ -1,4 +1,5 @@
 package ru.netology;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,30 +9,45 @@ import ru.netology.Radio;
 
 
 public class RadioTest {
-
-    // Тест 1. Установить любой номер радиостанции
+    // Тест 1. Получить максимальную радиостанцию
     @Test
-    public void setTheRadioStationNumber() {
-        Radio service = new Radio();
-        service.setCurrentRadioStationNumber(5);
-        int expected = 5;
-        int actual = service.getCurrentRadioStationNumber();
-        Assertions.assertEquals(expected, actual);
+    public void getMaximumRadioStation() {
+        Radio test = new Radio(50);
+        test.setCurrentRadioStationNumber(25);
+        Assertions.assertEquals(49, test.getMaxRadioStation());
+    }
+    // Тест 2. Получить минимальную радиостанцию
+    @Test
+    public void getMinimumRadioStation() {
+        Radio test = new Radio(-6);
+        Assertions.assertEquals(0, test.getMinRadioStation());
+    }
+    // Тест 3. Получить размер станции
+    @Test
+    public void getSizeRadioStation() {
+        Radio test = new Radio(2);
+        Assertions.assertEquals(2, test.getSizeRadioStation());
     }
 
-    // Тест 2. Установить номер радиостанции выше лимита
+    // Тест 4. Установить любой номер радиостанции
+    @Test
+    public void setTheRadioStationNumber() {
+        Radio service = new Radio(50);
+        service.setCurrentRadioStationNumber(5);
+        Assertions.assertEquals(5, service.getCurrentRadioStationNumber());
+    }
+
+    // Тест 5. Установить номер радиостанции выше лимита
     @Test
     public void setTheRadioStationNumberAboveTheLimit() {
         Radio service = new Radio();
         service.setCurrentRadioStationNumber(10);
-        int expected = 0;
-        int actual = service.getCurrentRadioStationNumber();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, service.getCurrentRadioStationNumber());
     }
 
-    // Тест 3. Увеличить радиостанцию с 8 / на следующую.
-    // Тест 4. Увеличить радиостанцию с 9 на следующую.
-    // Тест 5. Увеличить радиостанцию с 0 на следующую.
+    // Тест 6. Увеличить радиостанцию с 8 / на следующую.
+    // Тест 7. Увеличить радиостанцию с 9 на следующую.
+    // Тест 8. Увеличить радиостанцию с 0 на следующую.
     @ParameterizedTest
     @CsvSource({
             "8, 9",
@@ -46,9 +62,9 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // Тест 6. Уменьшить номер радиостанции с 1;
-    // Тест 7. Уменьшить номер радиостанции с 0;
-    // Тест 8. Уменьшить номер радиостанции с -1;
+    // Тест 9. Уменьшить номер радиостанции с 1;
+    // Тест 10. Уменьшить номер радиостанции с 0;
+    // Тест 11. Уменьшить номер радиостанции с -1;
     @ParameterizedTest
     @CsvSource({
             "1, 0",
@@ -63,9 +79,9 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // Тест 9. Увеличить звук с 99
-    // Тест 10. Увеличить звук со 100
-    // Тест 11. Увеличить звук со 101
+    // Тест 12. Увеличить звук с 99
+    // Тест 13. Увеличить звук со 100
+    // Тест 14. Увеличить звук со 101
     @ParameterizedTest
     @CsvSource({
             "99, 100",
@@ -77,13 +93,12 @@ public class RadioTest {
         Radio servise = new Radio();
         servise.setSoundVolume(setVolume);
         servise.nextVolume();
-        int actual = servise.getSoundVolume();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, servise.getSoundVolume());
     }
 
-    // Тест 12. Уменьшить звук с 1
-    // Тест 13. Уменьшить звук с 0
-    // Тест 14. Уменьшить звук с -1
+    // Тест 15. Уменьшить звук с 1
+    // Тест 16. Уменьшить звук с 0
+    // Тест 17. Уменьшить звук с -1
     @ParameterizedTest
     @CsvSource({
             "1, 0",
@@ -94,14 +109,13 @@ public class RadioTest {
         Radio servise = new Radio();
         servise.setSoundVolume(setVolume);
         servise.prevVolume();
-        int actual = servise.getSoundVolume();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, servise.getSoundVolume());
     }
 
-
-    // Тест 15.  ---------------------MAIN покрытие .
-    // Передаю Текст (параметр).
-    // В Мэйн сравниваю строки и преобразую текст в целочисленный тип и возвращаю число.
+    // >>>>>>>>>>>>>>>>>>>>>>>>>  Класс Main  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // Тест 1.
+    // Передаю Текст (параметр).В main сравниваю строки и преобразую текст в
+    // целочисленный тип и возвращаю число.
     @Test
     public void stringToNumber() {
         Main service = new Main();
@@ -109,8 +123,7 @@ public class RadioTest {
         int actual = service.test("8");
         Assertions.assertEquals(expected, actual);
     }
-
-    // Тест 16.  ---------------------MAIN покрытие .
+    // Тест 2
     @Test
     public void stringToNumberEqual() {
         Main service = new Main();
@@ -118,5 +131,7 @@ public class RadioTest {
         int actual = service.test("9");
         Assertions.assertEquals(expected, actual);
     }
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 }
